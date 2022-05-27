@@ -1,14 +1,14 @@
-import fs from "fs";
-import dotenv from "dotenv";
-import Discord from "discord.js";
-import API from "./API";
+const fs = require("fs");
+const dotenv = require("dotenv").config();
+const { Client, Intents, Collection } = require("discord.js");
+const API = require("./API.js");
 
-const client = new Discord.Client();
+const client = new Client({ intents: [Intents.FLAGS.GUILD_MESSAGES] });
 
 const prefix = "!cumali";
 const trigger = "hayırlı cumalar";
 
-client.commands = new Discord.Collection();
+client.commands = new Collection();
 
 const commandFiles = fs
   .readdirSync("./commands")
@@ -24,6 +24,7 @@ client.on("ready", () => {
 });
 
 client.on("messageCreate", function (message) {
+  console.log(message.content);
   if (message.author.bot) return;
 
   if (message.content.trim().toLocaleLowerCase().indexOf(trigger)) {

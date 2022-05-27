@@ -1,5 +1,5 @@
-import dotenv from "dotenv";
-import Axios from "axios";
+const dotenv = require("dotenv").config();
+const { default: Axios } = require("axios");
 
 const url = process.env.URL || "http://localhost:3000";
 
