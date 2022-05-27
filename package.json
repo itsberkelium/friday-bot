@@ -1,0 +1,18 @@
+{
+  "name": "friday-bot",
+  "version": "1.0.0",
+  "description": "A Discord bot to celebrate the holy friday for all Muslims around the globe.",
+  "main": "index.js",
+  "repository": "git@github.com:itsberkelium/friday-bot.git",
+  "author": "itsberkelium <hello@berke.dev> (https://berke.dev)",
+  "license": "GPL-3.0",
+  "private": false,
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "discord.js": "^13.7.0",
+    "dotenv": "^16.0.1"
+  }
+}
