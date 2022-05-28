@@ -27,4 +27,4 @@ const falseResponses = [
   "Bugün cuma değil ama sen yarın bir daha dene şansını.",
 ];
 
-export default falseResponses;
+module.exports = falseResponses;

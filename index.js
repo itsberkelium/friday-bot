@@ -3,10 +3,14 @@ const fs = require("fs");
 const dotenv = require("dotenv").config();
 const { Client, Intents, Collection } = require("discord.js");
 const API = require("./API.js");
-const falseResponses = require("./falseResponses.js");
+const falseResponses = require("./db/falseResponses.js");
 
 const client = new Client({
-  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
+  intents: [
+    Intents.FLAGS.GUILDS,
+    Intents.FLAGS.GUILD_MESSAGES,
+    Intents.FLAGS.GUILD_MEMBERS,
+  ],
 });
 
 const prefix = "!cumali";
