@@ -20,7 +20,7 @@ const randomFalseMessages = [
 ];
 
 const prefix = "!cumali";
-const trigger = "HAYIRLI CUMALAR";
+const trigger = "HAYIRLI CUMA";
 
 client.commands = new Collection();
 
