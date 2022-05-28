@@ -3,21 +3,11 @@ const fs = require("fs");
 const dotenv = require("dotenv").config();
 const { Client, Intents, Collection } = require("discord.js");
 const API = require("./API.js");
+const falseResponses = require("./falseResponses.js");
 
 const client = new Client({
   intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
 });
-
-const randomFalseMessages = [
-  "Ooo kardeşim, cuma kalabalık olur diye erkenden mi gittin sen?",
-  "Senin yüzünden cumayı kaçırdım sandım.",
-  "Daha gelmedik. Sen yat ben uyandırırım seni.",
-  "Ah keşke bee...",
-  "Ben de isterdim gavurlar gibi Allah'a Şükür Bugün Cuma demeyi.",
-  "Güneş batarken ardından tepelerin... Neyse...",
-  "Bugün cuma mı mübaret?",
-  "Sabret kardeşim, o günler de gelecek.",
-];
 
 const prefix = "!cumali";
 const trigger = "HAYIRLI CUMA";
@@ -47,9 +37,7 @@ client.on("messageCreate", function (message) {
       return message.reply(`${message.author} hayırlı cumalar kardeşim!`);
     else
       return message.reply(
-        randomFalseMessages[
-          Math.floor(Math.random() * randomFalseMessages.length)
-        ]
+        falseResponses[Math.floor(Math.random() * falseResponses.length)]
       );
   }
 
@@ -58,11 +46,6 @@ client.on("messageCreate", function (message) {
   const commandBody = message.content.slice(prefix.length + 1);
   const args = commandBody.split(" ");
   const commandName = args.shift().toLowerCase();
-
-  if (commandName === "ping") {
-    const timeTaken = Date.now() - message.createdTimestamp;
-    message.reply(`Pong! This message had a latency of ${timeTaken}ms!`);
-  }
 
   if (!client.commands.has(commandName)) return;
 
