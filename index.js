@@ -4,6 +4,7 @@ const dotenv = require("dotenv").config();
 const { Client, Intents, Collection } = require("discord.js");
 const API = require("./API.js");
 const falseResponses = require("./db/falseResponses.js");
+const trueResponses = require("./db/trueResponses.js");
 
 let servers = {};
 
