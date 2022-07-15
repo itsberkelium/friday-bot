@@ -64,10 +64,17 @@ client.on("messageCreate", function (message) {
     const dayName = new Date().toLocaleString("en-us", { weekday: "long" });
 
     if (dayName === "Friday")
-      return message.reply(`${message.author} hayırlı cumalar kardeşim!`);
+      return message.reply(
+        trueResponses[Math.floor(Math.random() * trueResponses.length)].replace(
+          ":user",
+          message.author
+        )
+      );
     else
       return message.reply(
-        falseResponses[Math.floor(Math.random() * falseResponses.length)]
+        falseResponses[
+          Math.floor(Math.random() * falseResponses.length)
+        ].replace(":user", message.author)
       );
   }
 
