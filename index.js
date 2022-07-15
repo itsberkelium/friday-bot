@@ -5,7 +5,7 @@ const { Client, Intents, Collection } = require("discord.js");
 const API = require("./API.js");
 const falseResponses = require("./db/falseResponses.js");
 
-let users = [];
+let servers = {};
 
 const client = new Client({
   intents: [
@@ -32,17 +32,29 @@ for (const file of commandFiles) {
 client.on("ready", async () => {
   console.log(`Ready to roll as ${client.user.tag}`);
 
-  const guild = client.guilds.cache.get("754735522341191811");
+  client.guilds.cache.forEach(async (guild) => {
+    servers[guild.id] = {
+      members: [],
+      name: guild.name,
+      id: guild.id,
+    };
 
-  const members = await guild.members.fetch();
-
-  members
-    .filter((member) => !member.user.bot)
-    .forEach(async (member) => {
-      users.push({ id: member.user.id, name: member.user.username });
-    });
-
-  console.log(users);
+    guild.members
+      .fetch()
+      .then((members) => {
+        members
+          .filter((member) => !member.user.bot)
+          .forEach(async (member) => {
+            servers[guild.id].members.push({
+              id: member.user.id,
+              name: member.user.username,
+            });
+          });
+      })
+      .finally(() => {
+        console.log(servers);
+      });
+  });
 });
 
 client.on("messageCreate", function (message) {
