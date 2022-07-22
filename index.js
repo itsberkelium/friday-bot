@@ -61,7 +61,16 @@ client.on("ready", async () => {
 client.on("messageCreate", function (message) {
   if (message.author.bot) return;
 
-  if (message.content.trim().toUpperCase().indexOf(trigger) > -1) {
+  const upperCaseMessage = message.content.trim().toUpperCase();
+
+  if (
+    upperCaseMessage.indexOf("CUMALI") > -1 &&
+    upperCaseMessage.indexOf("ÖLDÜN") > -1 &&
+    upperCaseMessage.indexOf("MÜ") > -1
+  )
+    return message.reply("Ne ölmesi kardeşim bayılmışım");
+
+  if (upperCaseMessage.indexOf(trigger) > -1) {
     const dayName = new Date().toLocaleString("en-us", { weekday: "long" });
 
     if (dayName === "Friday")
